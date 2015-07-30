@@ -63,11 +63,9 @@ class Card: SKSpriteNode, Seeker {
     }
     
     func moveToTarget(duration: NSTimeInterval) -> SKAction? {
-        if let target = self.target {
-            return SKAction.moveTo(target.target, duration: duration)
-        } else {
-            return nil
-        }
+        guard let target = self.target else { return nil }
+        
+        return SKAction.moveTo(target.target, duration: duration)
     }
 
     required init?(coder aDecoder: NSCoder) {
