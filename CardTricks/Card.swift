@@ -1,5 +1,7 @@
 import SpriteKit
 
+let grayShader = SKShader(fileNamed: "gray")
+
 class Card: SKSpriteNode, Seeker {
     var rank: Rank
     var suit: Suit

@@ -22,7 +22,7 @@
 		BF9D8B841B682CA100674A01 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9D8B831B682CA100674A01 /* Player.swift */; };
 		BF9D8B861B68306B00674A01 /* cardPlace1.wav in Resources */ = {isa = PBXBuildFile; fileRef = BF9D8B851B68306B00674A01 /* cardPlace1.wav */; };
 		BF9D8B881B6929FC00674A01 /* Dealer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9D8B871B6929FC00674A01 /* Dealer.swift */; };
-		BF9D8B8A1B693B1C00674A01 /* sepia.fsh in Resources */ = {isa = PBXBuildFile; fileRef = BF9D8B891B693B1C00674A01 /* sepia.fsh */; };
+		BF9D8B8A1B693B1C00674A01 /* gray.fsh in Resources */ = {isa = PBXBuildFile; fileRef = BF9D8B891B693B1C00674A01 /* gray.fsh */; };
 		BF9D8B8D1B6967E700674A01 /* cardSlide5.wav in Resources */ = {isa = PBXBuildFile; fileRef = BF9D8B8C1B6967E700674A01 /* cardSlide5.wav */; };
 		BF9D8B8F1B69683700674A01 /* cardBack_blue1.png in Resources */ = {isa = PBXBuildFile; fileRef = BF9D8B8E1B69683700674A01 /* cardBack_blue1.png */; };
 		BF9D8BC51B69684B00674A01 /* cardClubs2.png in Resources */ = {isa = PBXBuildFile; fileRef = BF9D8B901B69684B00674A01 /* cardClubs2.png */; };
@@ -100,7 +100,7 @@
 		BF9D8B831B682CA100674A01 /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		BF9D8B851B68306B00674A01 /* cardPlace1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = cardPlace1.wav; sourceTree = "<group>"; };
 		BF9D8B871B6929FC00674A01 /* Dealer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dealer.swift; sourceTree = "<group>"; };
-		BF9D8B891B693B1C00674A01 /* sepia.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = sepia.fsh; sourceTree = "<group>"; };
+		BF9D8B891B693B1C00674A01 /* gray.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = gray.fsh; sourceTree = "<group>"; };
 		BF9D8B8C1B6967E700674A01 /* cardSlide5.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = cardSlide5.wav; sourceTree = "<group>"; };
 		BF9D8B8E1B69683700674A01 /* cardBack_blue1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cardBack_blue1.png; sourceTree = "<group>"; };
 		BF9D8B901B69684B00674A01 /* cardClubs2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cardClubs2.png; sourceTree = "<group>"; };
@@ -171,6 +171,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BF9A02EC1B6A961700B92496 /* entities */ = {
+			isa = PBXGroup;
+			children = (
+				BF9D8B871B6929FC00674A01 /* Dealer.swift */,
+				BF9D8B831B682CA100674A01 /* Player.swift */,
+				BF9D8B811B66E40100674A01 /* Hand.swift */,
+				BF9D8B7B1B66CBBD00674A01 /* Card.swift */,
+			);
+			name = entities;
+			sourceTree = "<group>";
+		};
+		BF9A02ED1B6A963700B92496 /* enums */ = {
+			isa = PBXGroup;
+			children = (
+				BF9D8B7F1B66CC7F00674A01 /* Ranks.swift */,
+				BF9D8B7D1B66CBFF00674A01 /* Suits.swift */,
+			);
+			name = enums;
+			sourceTree = "<group>";
+		};
 		BF9D8B351B62C0AA00674A01 = {
 			isa = PBXGroup;
 			children = (
@@ -190,6 +210,8 @@
 		BF9D8B401B62C0AA00674A01 /* CardTricks */ = {
 			isa = PBXGroup;
 			children = (
+				BF9A02ED1B6A963700B92496 /* enums */,
+				BF9A02EC1B6A961700B92496 /* entities */,
 				BF9D8BFD1B6A865D00674A01 /* protocols */,
 				BF9D8BFB1B69685E00674A01 /* sounds */,
 				BF9D8BFA1B69685300674A01 /* shaders */,
@@ -203,12 +225,6 @@
 				BF9D8B571B62C7A500674A01 /* background.jpg */,
 				BF9D8B4E1B62C0AA00674A01 /* LaunchScreen.storyboard */,
 				BF9D8B511B62C0AA00674A01 /* Info.plist */,
-				BF9D8B7B1B66CBBD00674A01 /* Card.swift */,
-				BF9D8B7D1B66CBFF00674A01 /* Suits.swift */,
-				BF9D8B7F1B66CC7F00674A01 /* Ranks.swift */,
-				BF9D8B811B66E40100674A01 /* Hand.swift */,
-				BF9D8B831B682CA100674A01 /* Player.swift */,
-				BF9D8B871B6929FC00674A01 /* Dealer.swift */,
 			);
 			path = CardTricks;
 			sourceTree = "<group>";
@@ -277,7 +293,7 @@
 		BF9D8BFA1B69685300674A01 /* shaders */ = {
 			isa = PBXGroup;
 			children = (
-				BF9D8B891B693B1C00674A01 /* sepia.fsh */,
+				BF9D8B891B693B1C00674A01 /* gray.fsh */,
 			);
 			name = shaders;
 			sourceTree = "<group>";
@@ -367,7 +383,7 @@
 				BF9D8BD71B69684B00674A01 /* cardDiamonds7.png in Resources */,
 				BF9D8BEF1B69684B00674A01 /* cardSpades4.png in Resources */,
 				BF9D8BC91B69684B00674A01 /* cardClubs6.png in Resources */,
-				BF9D8B8A1B693B1C00674A01 /* sepia.fsh in Resources */,
+				BF9D8B8A1B693B1C00674A01 /* gray.fsh in Resources */,
 				BF9D8BF91B69684B00674A01 /* cardSpadesQ.png in Resources */,
 				BF9D8BCC1B69684B00674A01 /* cardClubs9.png in Resources */,
 				BF9D8BF41B69684B00674A01 /* cardSpades9.png in Resources */,

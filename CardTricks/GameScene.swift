@@ -1,8 +1,6 @@
 import Foundation
 import SpriteKit
 
-let sepiaShader = SKShader(fileNamed: "sepia")
-
 class GameScene: SKScene {
     var bg: SKSpriteNode?
     var fg: SKNode?
@@ -67,21 +65,29 @@ class GameScene: SKScene {
                     for hand in player.hands {
                         let newPosition = self.convertPoint(deckPosition, toNode: hand)
                         let card = Card(faceUp: true, target: hand)
-                        let moveToTarget = card.moveToTarget(dealDuration)
-                        let rotate = SKAction.rotateByAngle(CGFloat(2 * M_PI), duration: dealDuration)
-                        let grow = SKAction.scaleTo(2.4, duration: halfDuration)
-                        let shrink = SKAction.scaleTo(1.0, duration: halfDuration)
-                        let growAndShrink = SKAction.sequence([grow, shrink])
-                        let playSound = SKAction.playSoundFileNamed("cardSlide5", waitForCompletion: false)
-                        let animation = SKAction.group([moveToTarget!, rotate, growAndShrink, playSound])
+                    
+                        let growAndShrink = SKAction.sequence([
+                            SKAction.scaleTo(2.4, duration: halfDuration),
+                            SKAction.scaleTo(1.0, duration: halfDuration)
+                        ])
+                        
+                        let animation = SKAction.group([
+                            card.moveToTarget(dealDuration)!,
+                            growAndShrink,
+                            SKAction.rotateByAngle(CGFloat(2 * M_PI), duration: dealDuration),
+                            SKAction.playSoundFileNamed("cardSlide5", waitForCompletion: false)
+                        ])
+                        
+                        let dealSequence = SKAction.sequence([
+                            SKAction.hide(),
+                            SKAction.waitForDuration(delay),
+                            SKAction.unhide(),
+                            animation
+                        ])
                     
                         hand.addCard(card)
                         card.position = newPosition
-                        //card.shader = sepiaShader
-                        card.runAction(SKAction.sequence([SKAction.hide(),
-                                                          SKAction.waitForDuration(delay),
-                                                          SKAction.unhide(),
-                                                          animation]))
+                        card.runAction(dealSequence)
                         delay += halfDuration
                     }
                 }
