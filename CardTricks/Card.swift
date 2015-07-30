@@ -1,9 +1,10 @@
 import SpriteKit
 
-class Card: SKSpriteNode {
+class Card: SKSpriteNode, Seeker {
     var rank: Rank
     var suit: Suit
     var faceUp: Bool
+    var target: Target?
 
     static let defaultColor: UIColor = UIColor.redColor()
     static let defaultSize: CGSize = CGSize(width: 48, height: 64)
@@ -40,10 +41,6 @@ class Card: SKSpriteNode {
         return SKTexture(imageNamed: "card\(suitStr)\(rankStr)")
     }
     
-    static func Random (faceUp faceUp: Bool) -> Card {
-        return Card(rank: Rank.Random(), suit: Suit.Random(), faceUp: faceUp)
-    }
-    
     init (rank: Rank, suit: Suit, faceUp: Bool) {
         let texture = faceUp ? Card.textureForCard(rank, suit: suit) : Card.faceDownTexture
         
@@ -52,6 +49,23 @@ class Card: SKSpriteNode {
         self.faceUp = faceUp
         super.init(texture: texture, color: Card.defaultColor, size: Card.defaultSize)
         self.zPosition = 1
+    }
+    
+    convenience init (faceUp: Bool) {
+        self.init(rank: Rank.Random(), suit: Suit.Random(), faceUp: faceUp)
+    }
+    
+    convenience init (faceUp: Bool, target: Target) {
+        self.init(rank: Rank.Random(), suit: Suit.Random(), faceUp: faceUp)
+        self.target = target
+    }
+    
+    func moveToTarget(duration: NSTimeInterval) -> SKAction? {
+        if let target = self.target {
+            return SKAction.moveTo(target.target, duration: duration)
+        } else {
+            return nil
+        }
     }
 
     required init?(coder aDecoder: NSCoder) {

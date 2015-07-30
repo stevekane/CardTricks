@@ -1,6 +1,8 @@
 import Foundation
 import SpriteKit
 
+let sepiaShader = SKShader(fileNamed: "sepia")
+
 class GameScene: SKScene {
     var bg: SKSpriteNode?
     var fg: SKNode?
@@ -59,38 +61,23 @@ class GameScene: SKScene {
                 player.removeAllChildren()
                 player.addHand(hand)
             }
-            
-            /*
-            if let dealer = self.dealer {
-                let hand = Hand()
-                let c1 = Card.Random(faceUp: false)
-                let c2 = Card.Random(faceUp: true)
-                
-                //TODO: remove only hands soon!
-                dealer.removeAllChildren()
-                c1.position = hand.offset
-                hand.addCard(c1)
-                c2.position = hand.offset
-                hand.addCard(c2)
-                dealer.addHand(hand)
-            }
-            */
-            
+
             repeat {
                 for player in self.players {
                     for hand in player.hands {
                         let newPosition = self.convertPoint(deckPosition, toNode: hand)
-                        let card = Card.Random(faceUp: true)
-                        let moveToTarget = SKAction.moveTo(hand.offset, duration: dealDuration)
+                        let card = Card(faceUp: true, target: hand)
+                        let moveToTarget = card.moveToTarget(dealDuration)
                         let rotate = SKAction.rotateByAngle(CGFloat(2 * M_PI), duration: dealDuration)
                         let grow = SKAction.scaleTo(2.4, duration: halfDuration)
                         let shrink = SKAction.scaleTo(1.0, duration: halfDuration)
                         let growAndShrink = SKAction.sequence([grow, shrink])
                         let playSound = SKAction.playSoundFileNamed("cardSlide5", waitForCompletion: false)
-                        let animation = SKAction.group([moveToTarget, rotate, growAndShrink, playSound])
+                        let animation = SKAction.group([moveToTarget!, rotate, growAndShrink, playSound])
                     
                         hand.addCard(card)
                         card.position = newPosition
+                        //card.shader = sepiaShader
                         card.runAction(SKAction.sequence([SKAction.hide(),
                                                           SKAction.waitForDuration(delay),
                                                           SKAction.unhide(),

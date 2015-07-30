@@ -1,11 +1,11 @@
 import SpriteKit
 
-class Hand: SKNode {
+class Hand: SKNode, Target {
     static let CARD_OFFSET: CGPoint = CGPoint(x: 14, y: 2)
     
     var currentBet: Int = 0
     var cards: [Card] = []
-    var offset: CGPoint {
+    var target: CGPoint {
         get {
             return CGPoint(
                 x: CGFloat(self.cards.count) * Hand.CARD_OFFSET.x,
