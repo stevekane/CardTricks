@@ -8,4 +8,11 @@ class Player: SKNode {
         self.hands.append(hand)
         self.addChild(hand)
     }
+    
+    func removeHand (hand: Hand) {
+        if let index = self.hands.indexOf(hand) {
+            self.hands.removeAtIndex(index)
+            hand.removeFromParent()
+        }
+    }
 }

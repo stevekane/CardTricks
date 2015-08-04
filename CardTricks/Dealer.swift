@@ -7,4 +7,11 @@ class Dealer: SKNode {
         self.hand = hand
         self.addChild(hand)
     }
+    
+    func removeHand () {
+        if let hand = self.hand {
+            hand.removeFromParent()
+            self.hand = nil
+        }
+    }
 }
